@@ -5,15 +5,18 @@ SRC = src/main.c src/auth.c src/database.c src/country.c src/region.c
 OBJ = $(SRC:.c=.o)
 TARGET = bin/country_app
 
-all: $(TARGET)
+all: ${TARGET}
 
 $(TARGET): $(OBJ)
-	$(CC) $(OBJ) -o $@ $(LDFLAGS)
+    $(CC) $(OBJ) -o $@ $(LDFLAGS)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+    $(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ) $(TARGET)
+    rm -f $(OBJ) $(TARGET)
 
-.PHONY: all clean
+run: all
+    ./$(TARGET)
+
+.PHONY: all clean run
